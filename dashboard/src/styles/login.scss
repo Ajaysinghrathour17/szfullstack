@@ -1,0 +1,68 @@
+
+.loginComponent{
+       display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: white;
+    .loginContainer{
+        border: 2px solid black;
+        background-color: #d2d2d3    ;
+        // height: 300px;
+        width: 500px;
+        padding: 10px 10px;
+        
+        .inputs{
+            display: flex;
+            flex-direction: column;
+            // justify-content: space-between;
+            justify-content: center;
+            // align-items: center;
+            gap: 10px 0;
+    
+            div{
+                display: flex;
+                flex-direction: column;
+    
+                input, select {
+                    font-weight: 400;
+                    width: 50%;
+                    height: 20px;
+                    padding: 2px 4px;
+                }
+            }
+        }
+    
+        .credentials{
+            font-size: 12px;
+            padding-top: 12px;
+        }
+        #login{
+            width: 60px;
+            height: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+    }
+    
+    .szlogo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            height: 150px;
+
+        }
+    }
+    .underline{
+        text-decoration: underline;
+        color: #477ab8;
+        font-size: 14px;
+        font-weight: 600;
+    }
+}
+
+.loginPage{
+    background-color: black;
+}
