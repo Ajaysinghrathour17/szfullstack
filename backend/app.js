@@ -36,10 +36,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/users', async (req, res) => {
     let conn;
-    try {
+    try { 
         conn = await  connectDB();
         const rows = await conn.query('SELECT * FROM signup'); 
-      
         res.json(rows);
         // console.log(rows);
     } catch (err) {
@@ -54,12 +53,10 @@ app.get('/users', async (req, res) => {
 // Route to handle form submission
 app.post('/submit', async (req, res) => {
     const { name, email, message } = req.body;
-
     let conn;
     try {
         // Get a connection from the pool
         conn = await  connectDB();
-
         // Insert form data into MariaDB
         const result = await conn.query("INSERT INTO signup (name, email, message) VALUES (?, ?, ?)", [name, email, message]);
         console.log('Form data inserted');

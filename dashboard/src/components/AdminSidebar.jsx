@@ -57,7 +57,8 @@ const AdminSidebar = () => {
             : {}
         }
       >
-        <h2>Smart Zindagi</h2>
+        <Link to= "/"><h2>Smart Zindagi</h2></Link>
+        
         <DivOne location={location} />
         {/* <DivTwo location={location} />
         <DivThree location={location} /> */}

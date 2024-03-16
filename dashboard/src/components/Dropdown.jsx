@@ -23,7 +23,6 @@ function Dropdown() {
     // Reset selected city
     setSelectedCity('');
   };
-
   // Event handler for when the city is selected
   const handleCityChange = (e) => {
     setSelectedCity(e.target.value);

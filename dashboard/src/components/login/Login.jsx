@@ -48,6 +48,7 @@ const Login = () => {
         <img src={sz} alt="Smart Zindagi" />
         </Link>
       </div>
+      
        <form className='loginContainer' onSubmit={handleSubmit}>
       <div className='loginHeader'>
         <h4>Manage Your Account</h4>

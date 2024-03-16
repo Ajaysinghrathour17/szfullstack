@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Rm from './components/forms/Rm';
 import Testing from './components/forms/Testing';
 import Dropdown from './components/Dropdown';
+import InsuranceForm from './components/forms/InsuranceForm';
 
 const Dashboard = lazy(() => import("./pages/Dashboard")) ;
 const Products = lazy(() => import("./pages/Products")) ;
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/admin/transaction" element={<Transaction />} />
         <Route path="/admin/customer" element={<Customers />} />
         <Route path="/admin/customer/register-insurance" element={<FormNewPolicy  />} />
+        <Route path="/admin/customer/insurance-form" element={<InsuranceForm  />} />
         <Route path="/admin/customer/register-agent" element={<NewAgent />} />
         <Route path="/admin/customer/register-rm" element={<Rm />} />
         <Route path="/admin/customer/signup" element={<Testing />} />

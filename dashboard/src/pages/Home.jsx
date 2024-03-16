@@ -6,7 +6,11 @@ import Login from '../components/login/Login.jsx'
 const Home = () => {
   return (
     <>
-    <div>Home</div>
+    <div>
+      <Link to= "/">
+      Home
+      </Link>
+    </div>
 
 <Link to= "/admin/dashboard">
   Go to dashboard

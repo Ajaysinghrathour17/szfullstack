@@ -1,28 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 // import "./App.css";
 import "../../styles/form.scss";
-import { Link } from "react-router-dom";
+
 const FormNewPolicy = () => {
-  // const OnSubmitHandler = window.alert("Sumbitted")
+  const [insuranceFormData, setInsuranceFormData] = useState({
+    customer_name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setInsuranceFormData({
+      ...insuranceFormData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("", insuranceFormData);
+      alert("Policy data submitted successfully");
+      setInsuranceFormData({ customer_name: "", email: "", message: "" });
+    } catch (error) {
+      alert("Failed to submit form");
+    }
+  };
+
   return (
     <>
-     
       <div className="registration_form">
-      <div className="header">
-        <h1>Insurance Registration From</h1>
-        <Link to="/admin/customer"> back 
-        </Link>
-      </div>
+        <div className="header">
+          <h1>Insurance Registration From</h1>
+          <Link to="/admin/customer"> back</Link>
+        </div>
 
-        <form className="container" action="post">
+        <form className="container" onSubmit={handleSubmit}>
           <div className="form_ui">
             <div>
               <label htmlFor="customer_name">Customer Name:</label>
               <input
                 type="text"
-                id="customer_name"
-                placeholder="Enter Customer Name"
                 name="Customer_name"
+                placeholder="Enter Customer Name"
+                value={insuranceFormData.customer_name}
+                onChange={handleChange}
               />
             </div>
 
@@ -30,9 +54,10 @@ const FormNewPolicy = () => {
               <label htmlFor="email">Email:</label>
               <input
                 type="email"
-                id="email"
-                placeholder="Enter your Email"
+                placeholder="Enter Email"
                 name="email"
+                value={insuranceFormData.customer_name}
+                onChange={handleChange}
               />
             </div>
 
@@ -40,9 +65,10 @@ const FormNewPolicy = () => {
               <label htmlFor="policy_booking_date">Policy Booking Date:</label>
               <input
                 type="date"
-                id="policy_booking_date"
                 placeholder="Enter Policy Booking Date"
                 name="policy_booking_date"
+                value={insuranceFormData.customer_name}
+                onChange={handleChange}
               />
             </div>
 
@@ -50,14 +76,36 @@ const FormNewPolicy = () => {
               <label htmlFor="customer_group">Customer Group:</label>
               <input
                 type="text"
-                id="customer_group"
                 placeholder="Enter Customer Group"
                 name="customer_group"
+                value={insuranceFormData.customer_name}
+                onChange={handleChange}
               />
             </div>
             <div>
               <label htmlFor="insurer">Insurer:</label>
-              <input type="text" id="insurer" placeholder="ICICI" name="insurer" />
+              <input
+                type="text"
+                placeholder="ICICI"
+                name="insurer"
+                value={insuranceFormData.customer_name}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/*  insurance types*/}
+            <div>
+              <label htmlFor="insurance_type">Insurance Type:</label>
+              <select id="insurance_type" name="insurance_type">
+                <option value="two_wheeler">Car Insurance</option>
+                <option value="harvester"> Bike Insurance</option>
+                <option value="four_wheeler">Health Insurance</option>
+                <option value="pvt_car">Life Insurance</option>
+                <option value="commercial_vehicle">General Insurance</option>
+                <option value="gcv">Travel Insurance</option>
+                <option value="car">Other Insurance</option>
+                {/* <option value="taxi">Taxi</option> */}
+              </select>
             </div>
             <div>
               <label htmlFor="policy_type">Policy Type:</label>
@@ -77,8 +125,8 @@ const FormNewPolicy = () => {
               <select id="policy_plan_type" name="policy_plan_type">
                 <option value="first_party">First Party</option>
                 <option value="third_party">Third Party</option>
-                <option value="saod">SAOD</option>
                 <option value="comprehansive">Comprehansive</option>
+                <option value="saod">SAOD</option>
               </select>
             </div>
             <div>
@@ -93,15 +141,6 @@ const FormNewPolicy = () => {
             <div>
               <label htmlFor="ncb">NCB:</label>
               <input type="text" id="ncb" placeholder="Enter NCB" name="ncb" />
-            </div>
-            <div>
-              <label htmlFor="fuel_type">Fuel Type:</label>
-              <select id="fuel_type" name="fuel_type">
-                <option value="petrol">Petrol</option>
-                <option value="diesel">Diesel</option>
-                <option value="cng">CNG</option>
-                <option value="other">Other</option>
-              </select>
             </div>
 
             <div>
@@ -270,9 +309,11 @@ const FormNewPolicy = () => {
               />
             </div>
 
-            <button 
-            // type="submit"
-            >Submit</button>
+            <button
+            type="submit"
+            >
+              Submit
+            </button>
           </div>
         </form>
       </div>
