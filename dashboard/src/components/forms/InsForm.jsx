@@ -1,12 +1,17 @@
+// creating this form and adding dynamically select tags
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../../styles/form.scss";
 
 //this form is created for submitting policies data(new sold policies ) to database 
-const InsuranceForm = () => {
-
-    const insuranceTypes = {
+const InsForm = () => {
+    const [selectedInsurance, setSelectedInsurance] = useState('');
+  const [selectedPolicyPlanType, setSelectedPolicyPlanType] = useState('');
+  const [policyPlanTypes, setPolicyPlanTypes] = useState([]);
+     
+    const insuranceTypesMap = {
         "Car Insurance": [
           "Comprehensive",
           "First Party",
@@ -19,7 +24,6 @@ const InsuranceForm = () => {
           "Pay As You Drive",
           "Used Car",
           "Commercial Car"
-
         ],
         "Bike Insurance": [
           "Scooter",
@@ -52,7 +56,6 @@ const InsuranceForm = () => {
           "School Bus",
           "Taxi"
         ],
-    
         "COMMERCIAL": [
           "Commercial",
           "School Bus",
@@ -86,8 +89,23 @@ const InsuranceForm = () => {
             "Corona Kavach Policy",
           ],
       };
+
+    //   Event Handler for when insurance type is selected
+    const handleInsuranceChange = (e) => {
+         const selectedInsurance = e.target.value;
+         setSelectedInsurance(selectedInsurance);
+         
+    // Update the plan type dropdown based on the selected insurance
+
+         setPolicyPlanTypes(insuranceTypesMap[selectedInsurance] || []);
+         //reset
+         setSelectedInsurance('');
+    }
       
-    
+    const handlePolicyPlanTypeChange = (e) => {
+              setSelectedPolicyPlanType(e.target.value)
+    }
+
   const [insuranceFormData, setInsuranceFormData] = useState({
     policy_booking_date: "",
     customer_name: "",
@@ -118,7 +136,7 @@ const InsuranceForm = () => {
     // Add more fields as needed for other insurance types
   });
 
-  // console.log(insuranceFormData);
+//   console.log(insuranceFormData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -281,18 +299,17 @@ const InsuranceForm = () => {
               <label htmlFor="insurance_type">Insurance Type:</label>
               <select
                 id="insurance_type"
-                name="insurance_type"
-                value={insuranceFormData.insurance_type}
-                onChange={handleChange}
+                // name="insurance_type"
+                value={selectedInsurance}
+                onChange={handleInsuranceChange}
               >
                 <option value="">Select Insurance Type</option>
-                <option value="Car insurance">Car Insurance</option>
-                <option value="Bike insurance">Bike Insurance</option>
-                <option value="four_wheeler">Health Insurance</option>
-                <option value="pvt_car">Life Insurance</option>
-                <option value="commercial_vehicle">General Insurance</option>
-                <option value="gcv">Travel Insurance</option>
-                <option value="car">Other Insurance</option>
+                {Object.keys(insuranceTypesMap).map((insurance) => (
+          <option key={insurance} value={insurance} >
+            {insurance} 
+          </option>
+        ))}
+        
               </select>
             </div>
             {renderVehicleFields()}
@@ -499,4 +516,4 @@ const InsuranceForm = () => {
   );
 };
 
-export default InsuranceForm;
+export default InsForm;

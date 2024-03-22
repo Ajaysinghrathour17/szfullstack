@@ -13,7 +13,7 @@ function Dropdown() {
     UK: ['London', 'Manchester', 'Birmingham'],
     France: ['Paris', 'Marseille', 'Lyon'],
   };
-
+  
   // Event handler for when the country is selected
   const handleCountryChange = (e) => {
     const selectedCountry = e.target.value;

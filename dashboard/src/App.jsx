@@ -8,11 +8,14 @@ import Rm from './components/forms/Rm';
 import Testing from './components/forms/Testing';
 import Dropdown from './components/Dropdown';
 import InsuranceForm from './components/forms/InsuranceForm';
+import InsForm from './components/forms/InsForm';
+import TestDropDown from './components/forms/TestDropDown';
+import { SignupForm } from './components';
+import Investor from './pages/investor/InvestorDashboard';
 
 const Dashboard = lazy(() => import("./pages/Dashboard")) ;
 const Products = lazy(() => import("./pages/Products")) ;
 const Transaction = lazy(() => import("./pages/Transaction")) ;
-
 const Customers = lazy(() => import("./pages/Customers")) ;
 
 
@@ -32,8 +35,12 @@ const App = () => {
         <Route path="/admin/customer/register-rm" element={<Rm />} />
         <Route path="/admin/customer/signup" element={<Testing />} />
         <Route path="/admin/customer/dropdown" element={<Dropdown />} />
+        <Route path="/admin/dashboard/form" element={<InsForm />} />
+        <Route path="/admin/dashboard/test-form" element={<TestDropDown />} />
 
-
+        {/* create user */}
+        <Route path="/sign-up" element={<SignupForm />} />
+        <Route path="/investor-dashboard" element={<Investor />} />
 
 
 
